@@ -9,7 +9,6 @@ API that display output and interract with touch screen TFT display to. waht to 
 ### Technology stack
 - C language: main implementation of logic and low level interraction with hardware
 - Python: to read configuration and transmit it to C language level on startup
-- docker: to run container that continuasly display infoprmation
 
 ### Setup Details
 
