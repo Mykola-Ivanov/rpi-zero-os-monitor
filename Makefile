@@ -8,6 +8,7 @@ SRC = \
 	src/main.c \
 	src/resources.c \
 	src/cpu.c \
+	src/temperature.c \
 	src/display.c
 
 OBJ = $(SRC:.c=.o)

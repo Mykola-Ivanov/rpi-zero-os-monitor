@@ -5,6 +5,7 @@
 #include "resources.h"
 #include "cpu.h"
 #include "display.h"
+#include "temperature.h"
 
 #define UPDATE_INTERVAL_SECONDS 1
 
@@ -18,6 +19,7 @@ int main(void)
 
     double cpu_percent;
 
+    double temperature_c;
 
     /*
      * Initialize display.
@@ -84,6 +86,20 @@ int main(void)
                 &current_cpu
             );
 
+        /*
+         * -------------------------
+         * CPU temperature
+         * -------------------------
+         */
+
+        if (temperature_get_cpu(&temperature_c) != 0) {
+
+            fprintf(stderr,
+                    "Failed to read CPU temperature\n");
+
+            break;
+        }
+
 
         /*
          * -------------------------
@@ -93,13 +109,16 @@ int main(void)
 
         printf(
             "RAM: %lu / %lu MB (%5.1f%%) | "
-            "CPU: %5.1f%%\n",
+            "CPU: %5.1f%% | "
+            "TEMP: %5.1f C\n",
 
             memory.used_kb / 1024,
             memory.total_kb / 1024,
             memory.used_percent,
 
-            cpu_percent
+            cpu_percent,
+
+            temperature_c
         );
 
         fflush(stdout);
